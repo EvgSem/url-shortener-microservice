@@ -3,13 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>URL Shortener</title>
-	<script src = "src/url-shortener.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
-<body>
-	
-	<h1>Hover over an image below to display here.<h1>
-	<input id="originalUrl" alt="Enter your url"></input>
-	<h2> </h2>
-	<button> </button>
-</body>
+    <body>
+    	<h1>Get your short URL<h1>
+    	<input id="originalUrl" alt="Enter your url"></input>
+    	<h2 id='shortUrl'> </h2>
+    	<button id = ="getShortUrl">get short Url</button>
+	    <script>
+	        
+            $("button").click(function(){
+                var originalUrl = document.getElementById("originalUrl").value;
+                console.log("OrUrl" + originalUrl);
+                $.ajax({url: "https://url-shortener-microservice-evgsem.c9users.io:3000/shorten", data:originalUrl, success: function(result){
+                    console.log(result.shortUrl);
+                    $("#h2").html(result.shortUrl);
+                }});
+            });
+        </script>
+    </body>
+
 </html>
